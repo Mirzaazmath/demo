@@ -1,6 +1,9 @@
 import 'package:asws/pages/DashBoard/dashboard.dart';
 import 'package:asws/pages/login/login.dart';
 import 'package:asws/pages/signup/sign_up.dart';
+import 'package:asws/providers/page_provider.dart';
+
+import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -9,7 +12,18 @@ void main() async{
   await Hive.initFlutter();
 
   Box box = await Hive.openBox('testBox');
-  runApp(MyApp());
+  runApp(
+      MultiProvider(
+          providers: [
+          // The Main Reason We Are Intialaizing The Provider Here So We Can Access it in Our Entire Application
+          ChangeNotifierProvider(
+          create: (context) => PageProvider()),],
+        child:MyApp()) ,
+  );
+
+
+
+
 }
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -26,7 +40,7 @@ class MyApp extends StatelessWidget {
         )
       ),
 
-       home:LoginPage()
+       home:DashBoard()
      //  LoginPage(),
       //DashBoard()
     );

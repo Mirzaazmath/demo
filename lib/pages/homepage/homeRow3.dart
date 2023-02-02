@@ -1,5 +1,7 @@
 import 'package:asws/utils/appColors.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/textwidgets.dart';
 class HomeRow3 extends StatelessWidget {
   const HomeRow3({Key? key}) : super(key: key);
 
@@ -14,7 +16,36 @@ class HomeRow3 extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Recently Join Students",style: Theme.of(context).textTheme.headline1,),
+              TextWidgets().headingtext("Recently Joined Students", context),
+          const SizedBox(height: 20,),
+          Row(
+            children: [
+              Expanded(
+                  flex:2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text("Name ",style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 16),),
+                  ),),
+              Expanded(
+                  flex:1,child: Text("Id",style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 16),),),
+              Expanded(
+                  flex:1,
+                  child: Text("Center",style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 16),),),
+              Expanded(
+                  flex:1,
+                  child: Text("Contact",style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 16),),),
+
+              Expanded(
+                  flex:1,
+                  child: Text("Admission Date",style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 16),),),
+              Expanded(
+                  flex:1,
+                  child: Text("",style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 16),),),
+
+
+            ],
+          ),
+
              const  SizedBox(height: 20,),
               ListView.builder(
                 itemCount: 5,
@@ -32,20 +63,17 @@ class HomeRow3 extends StatelessWidget {
                     Expanded(
                         flex:1,child: Text("ID123456789",style: TextStyle(color: Theme.of(context).primaryColor,fontWeight: FontWeight.bold),)),
                     Expanded(
-                        flex:2,
-                        child: ListTile(
-                      leading: CircleAvatar(backgroundColor: AppColors().orange,),
-                      title: const Text("Center",style: TextStyle(color: Colors.grey,fontSize: 12),),
-                      subtitle: Text("Macca Masjid ",style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 14),),
-
-
-                    )),
+                        flex:1,
+                        child:  Text("Macca Masjid ",style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 14),),),
+                    Expanded(
+                        flex:1,
+                        child: Text("+91 987654321",style: TextStyle(color: Theme.of(context).primaryColor,fontWeight: FontWeight.bold),)),
                     Expanded(
                         flex:1,
                         child: Text("22/02/2023",style: TextStyle(color: Theme.of(context).primaryColor,fontWeight: FontWeight.bold),)),
                     Expanded(
                       flex:1,
-                        child: Icon(Icons.more_horiz,color: Colors.grey,)),
+                        child: Icon(Icons.more_vert,color: Colors.grey,)),
                   ],
                 );
 

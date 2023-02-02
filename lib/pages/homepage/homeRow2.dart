@@ -2,8 +2,22 @@ import 'package:flutter/material.dart';
 
 import '../../utils/appColors.dart';
 import '../../utils/textwidgets.dart';
-class HomeRow2 extends StatelessWidget {
+class HomeRow2 extends StatefulWidget {
   const HomeRow2({Key? key}) : super(key: key);
+
+  @override
+  State<HomeRow2> createState() => _HomeRow2State();
+}
+
+class _HomeRow2State extends State<HomeRow2> {
+  var  dropdownValue;
+  List<String> list = ['Center', 'Two', 'Three', 'Four',"Five"];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    dropdownValue =list.first ;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +40,28 @@ class HomeRow2 extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children:  [
                           TextWidgets().headingtext("Teachers Leader Board", context),
+                          DropdownButton<String>(
+                            value: dropdownValue,
+                            underline: Container(height: 2,color: Colors.transparent,),
 
-                          Text("Top 5")
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.black),
+
+                            onChanged: (String? value) {
+                              // This is called when the user selects an item.
+                              setState(() {
+                                dropdownValue = value!;
+                              });
+                            },
+                            items: list.map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                          ),
+
+                          // Text("Top 5")
                         ],
                       ),
                     ),
@@ -72,7 +106,26 @@ class HomeRow2 extends StatelessWidget {
                         children:  [
                           TextWidgets().headingtext("Students Leader Board", context),
 
-                          Text("Top 5")
+                          DropdownButton<String>(
+                            value: dropdownValue,
+                            underline: Container(height: 2,color: Colors.transparent,),
+
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.black),
+
+                            onChanged: (String? value) {
+                              // This is called when the user selects an item.
+                              setState(() {
+                                dropdownValue = value!;
+                              });
+                            },
+                            items: list.map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                          ),
                         ],
                       ),
                     ),

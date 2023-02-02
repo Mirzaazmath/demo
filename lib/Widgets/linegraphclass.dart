@@ -24,23 +24,70 @@ class _LineGaphClassState extends State<LineGaphClass> {
   @override
   Widget build(BuildContext context) {
     return SfCartesianChart(
-        series: <ChartSeries>[
-          SplineSeries<Saledata,double>(
-            width: 5,
-            color: AppColors().orange,
-            dataSource: _chartdata,
-            xValueMapper: (Saledata data,_)=>data.sales,
-            yValueMapper: (Saledata data,_)=>data.year,),
-          SplineSeries<Saledata,double>(
-            width: 5,
-            color: AppColors().yellow,
-            dataSource: _chartdata2,
-            xValueMapper: (Saledata data,_)=>data.sales,
-            yValueMapper: (Saledata data,_)=>data.year,)
+      tooltipBehavior: TooltipBehavior(enable: true),
+      legend: Legend(
+          overflowMode: LegendItemOverflowMode.wrap,
+          shouldAlwaysShowScrollbar: false,
+          position: LegendPosition.bottom,
+          isVisible: true),
+      primaryXAxis: CategoryAxis(
+        majorGridLines: const MajorGridLines(width: 0),
+      ),
+      primaryYAxis: NumericAxis(
+          axisLine: const AxisLine(
+              color: Colors.transparent, width: 0)),
+      series: <ChartSeries>[
+        ColumnSeries<ChartData, int>(
+          color: Colors.green,
+          name: "Present",
 
-        ]
+            dataSource: chartData,
+            xValueMapper: (ChartData data, _) => data.x,
+            yValueMapper: (ChartData data, _) => data.y
+        ),
+        ColumnSeries<ChartData, int>(
+          name: "Absent",
+            color: Colors.red,
+            dataSource: chartData,
+            xValueMapper: (ChartData data, _) => data.x,
+            yValueMapper: (ChartData data, _) => data.y1
+        ),
+        ColumnSeries<ChartData, int>(
+          name: "Leave",
+            color: Colors.yellow,
+            dataSource: chartData,
+            xValueMapper: (ChartData data, _) => data.x,
+            yValueMapper: (ChartData data, _) => data.y2
+        ),
+      ],
     );
+
+    //   SfCartesianChart(
+    //     series: <ChartSeries>[
+    //       SplineSeries<Saledata,double>(
+    //         width: 5,
+    //         color: AppColors().orange,
+    //         dataSource: _chartdata,
+    //         xValueMapper: (Saledata data,_)=>data.sales,
+    //         yValueMapper: (Saledata data,_)=>data.year,),
+    //       SplineSeries<Saledata,double>(
+    //         width: 5,
+    //         color: AppColors().yellow,
+    //         dataSource: _chartdata2,
+    //         xValueMapper: (Saledata data,_)=>data.sales,
+    //         yValueMapper: (Saledata data,_)=>data.year,)
+    //
+    //     ]
+    // );
   }
+  final List<ChartData> chartData = [
+    ChartData(2010, 75, 23,60),
+    ChartData(2011, 80,38, 49),
+    ChartData(2012,60, 34, 12),
+    ChartData(2013,99, 52, 33),
+    ChartData(2014,130, 40, 30)
+  ];
+
   List<Saledata>getchartdata(){
     List<Saledata>chartdata=[
       Saledata(1,20),
@@ -78,4 +125,11 @@ class Saledata{
   final double sales;
   Saledata(this.sales,this.year);
 
+}
+class ChartData {
+  ChartData(this.x, this.y, this.y1,this.y2);
+  final int x;
+  final double y;
+  final double y1;
+  final double y2;
 }

@@ -552,7 +552,8 @@ class _NewStudentFormState extends State<NewStudentForm> {
                           ),
                         ],
                       ),
-                    )
+                    ),
+
                   ],
 
                 ),
@@ -581,27 +582,37 @@ class _NewStudentFormState extends State<NewStudentForm> {
       ),
     );
   }
-  Widget titletext( String title){
+
+}
+class titletext extends StatelessWidget {
+  String title;
+  titletext(this.title);
+
+
+  @override
+  Widget build(BuildContext context) {
     return Text(title,style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 18),);
   }
-  Widget feild(String title,TextEditingController controller,String hinttext){
-    return  Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        titletext(title),
-        SizedBox(
-          height: 10,
-        ),
-        TextFormField(
-          controller:controller,
-          decoration: InputDecoration(
+}
+
+
+Widget feild(String title,TextEditingController controller,String hinttext){
+  return  Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      titletext(title),
+      SizedBox(
+        height: 10,
+      ),
+      TextFormField(
+        controller:controller,
+        decoration: InputDecoration(
             hintText: hinttext,
-              border: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffC5BDEC)))
-          ),
+            border: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffC5BDEC)))
+        ),
 
-        )
-      ],
+      )
+    ],
 
-    );
-  }
+  );
 }

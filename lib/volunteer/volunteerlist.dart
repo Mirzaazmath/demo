@@ -1,22 +1,22 @@
-import 'package:asws/utils/appColors.dart';
 import 'package:flutter/material.dart';
-class TeacherList extends StatefulWidget {
- VoidCallback ontap;
- TeacherList(this.ontap);
+
+import '../utils/appColors.dart';
+class VolunteerList extends StatefulWidget {
+  VoidCallback ontap;
+  VolunteerList(this.ontap);
+
+
 
   @override
-  State<TeacherList> createState() => _TeacherListState();
+  State<VolunteerList> createState() => _VolunteerListState();
 }
 
-class _TeacherListState extends State<TeacherList> {
-
-
+class _VolunteerListState extends State<VolunteerList> {
   @override
   Widget build(BuildContext context) {
     var width=MediaQuery.of(context).size.width;
-    print(width);
     return GridView.builder(
-      shrinkWrap: true,
+        shrinkWrap: true,
         gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
           mainAxisSpacing: 20,
           crossAxisSpacing: 20,
@@ -37,8 +37,8 @@ class _TeacherListState extends State<TeacherList> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
 
-                      Icon(Icons.more_horiz,color: Colors.grey,)
-                    ],),
+                        Icon(Icons.more_horiz,color: Colors.grey,)
+                      ],),
 
                     AspectRatio(
                       aspectRatio: 2,
@@ -50,7 +50,7 @@ class _TeacherListState extends State<TeacherList> {
 
                     FittedBox(child: Text("Mohd Sohail",style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 16),)),
                     const SizedBox(height: 10,),
-                  const  Text("Alim",style: TextStyle(fontSize: 12,color: Colors.grey),),
+                    const  Text("Alim",style: TextStyle(fontSize: 12,color: Colors.grey),),
                     const SizedBox(height: 20,),
                     Row(mainAxisAlignment: MainAxisAlignment.center,
                       children: [

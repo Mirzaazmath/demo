@@ -1,33 +1,21 @@
+import 'package:asws/volunteer/volunteeerdetail.dart';
+import 'package:asws/volunteer/volunteerlist.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/appColors.dart';
-import '../../utils/appStrings.dart';
-import 'addcenter.dart';
-import 'centerdetails.dart';
-import 'centerlist.dart';
-class CentersPage extends StatefulWidget {
-  const CentersPage({Key? key}) : super(key: key);
+import '../utils/appColors.dart';
+import '../utils/appStrings.dart';
+class VolunteerScreen extends StatefulWidget {
+  const VolunteerScreen({Key? key}) : super(key: key);
 
   @override
-  State<CentersPage> createState() => _CentersPageState();
+  State<VolunteerScreen> createState() => _VolunteerScreenState();
 }
 
-class _CentersPageState extends State<CentersPage> {
+class _VolunteerScreenState extends State<VolunteerScreen> {
   bool detailShow=false;
-  bool zone=false;
-  var  dropdownValue;
-  List<String> list = ['New Center', 'Add Center', 'Import Center',];
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    dropdownValue =list.first ;
-  }
-
-
   @override
   Widget build(BuildContext context) {
-    return detailShow?CenterDetails(seeDetails):dropdownValue=="Add Center"?AddCenter(back): SingleChildScrollView(
+    return detailShow?Volunteerdetails(seeDetails): SingleChildScrollView(
       child: Padding(
         padding:const EdgeInsets.all(20),
         child: Column(
@@ -35,7 +23,7 @@ class _CentersPageState extends State<CentersPage> {
           children: [
             Row(
               children: [
-                Expanded(child: Text(AppStrings().center,style: Theme.of(context).textTheme.headline1,)),
+                Expanded(child: Text(AppStrings().volunteers,style: Theme.of(context).textTheme.headline1,)),
                 IconButton(
                     onPressed: (){},
                     icon: const  Icon(Icons.notifications_outlined,size: 35,)),
@@ -74,7 +62,7 @@ class _CentersPageState extends State<CentersPage> {
 
 
                 Expanded(
-                  flex: 2,
+                  flex: 1,
                   child: Container(
 
                     width: 200,
@@ -102,115 +90,50 @@ class _CentersPageState extends State<CentersPage> {
                   ),
                 ),
                 Expanded(
-                    flex: 2,
+                    flex: 1,
                     child: Container())
                 ,              Expanded(
                     flex: 2,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-
                         Container(
-                          padding:const  EdgeInsets.symmetric(horizontal: 30),
+                          padding:const  EdgeInsets.symmetric(horizontal: 30,vertical: 15),
                           decoration: BoxDecoration(
-                            color: Colors.indigo,
+                            color: Theme.of(context).primaryColor,
                             borderRadius: BorderRadius.circular(30),
 
                           ),
-                          child: Theme(
-                            data: Theme.of(context).copyWith(
-                              canvasColor: Colors.indigo,
-                            ),
-                            child :DropdownButton<String>(
-                              value: dropdownValue,
-                              underline: Container(height: 2,color: Colors.transparent,),
-
-                              elevation: 16,
-                              style: const TextStyle(color: Colors.white),
-
-                              onChanged: (String? value) {
-                                // This is called when the user selects an item.
-                                setState(() {
-                                  dropdownValue = value!;
-                                });
-                              },
-                              items: list.map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
-                            ),
-                          ),
+                          child:  Text("Select Center ",style: TextStyle(color: AppColors().lightwhite),),
                         ),
+                        Container(
+                          padding:const  EdgeInsets.symmetric(horizontal: 30,vertical: 15),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Theme.of(context).primaryColor),
+                            borderRadius: BorderRadius.circular(30),
+
+                          ),
+                          child:  Text("Newest ",style: TextStyle(color: Theme.of(context).primaryColor),),
+                        ), Container(
+                          padding:const  EdgeInsets.symmetric(horizontal: 30,vertical: 15),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.circular(30),
+
+                          ),
+                          child:  Text("New Teacher ",style: TextStyle(color: AppColors().lightwhite),),
+                        )
                       ],
 
                     ))
               ],
             ),
             const  SizedBox(height: 30,),
-           const  Text(" Select Zone",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
-            const SizedBox(height: 20,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Row(
-                  children: [
-                    Checkbox(value:zone , onChanged: (value){
-                      setState(() {
-                        zone=value!;
-
-                      });
-
-                    }),
-                    Text("East Zone")
-                  ],
-                ),
-                Row(
-                  children: [
-                    Checkbox(value:zone , onChanged: (value){
-                      setState(() {
-                        zone=value!;
-
-                      });
-
-                    }),
-                    Text("West Zone")
-                  ],
-                ),
-                Row(
-                  children: [
-                    Checkbox(value:zone , onChanged: (value){
-                      setState(() {
-                        zone=value!;
-
-                      });
-
-                    }),
-                    Text("North Zone")
-                  ],
-                ),
-                Row(
-                  children: [
-                    Checkbox(value:zone , onChanged: (value){
-                      setState(() {
-                        zone=value!;
-
-                      });
-
-                    }),
-                    Text("South Zone")
-                  ],
-                )
-
-              ],
-            ),
-            const  SizedBox(height: 30,),
-            CenterList(seeDetails),
+            VolunteerList(seeDetails),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Showing 1-5 from 100 data",style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 15),),
                   Row(children:const  [
@@ -245,14 +168,8 @@ class _CentersPageState extends State<CentersPage> {
       ),
     );
   }
-  void back(){
-    setState(() {
-      dropdownValue =list.first;
-    });
-  }
   void seeDetails(){
     setState(() {
       detailShow=!detailShow;
     });
-  }
-}
+}}

@@ -2,7 +2,7 @@ class AppStrings{
   final String dashboard="Dashboard";
   final String student="Students";
   final String teacher="Teachers";
-  final String center="Centers";
+  final String center="Zone";
   final String leaderboard="Leader Baord";
   final String attendence="Attendence";
   final String volunteers="Volunteers";
